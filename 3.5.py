@@ -12,6 +12,8 @@ def softmax(a):
     return y
 
 
-a = np.array([1010, 1000, 990])
+a = np.array([0.3, 2.9, 4.8])
 #a = np.array([10, 9, 8])
-print(softmax(a))
+y = softmax(a)
+print(y)
+print(np.sum(y))
