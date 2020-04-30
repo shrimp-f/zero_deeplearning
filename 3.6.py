@@ -54,6 +54,8 @@ def predict(network, x):
     return y
 
 
+
+
 if __name__ == "__main__":
     x, t = get_data()
     network = init_network()
