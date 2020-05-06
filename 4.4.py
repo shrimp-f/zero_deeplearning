@@ -1,7 +1,25 @@
-
+import sys, os
 import numpy as np
 import matplotlib.pylab as plt
 from mpl_toolkits.mplot3d import Axes3D
+from dataset.mnist import load_mnist
+from common.functions import softmax, cross_entropy_error
+#from common.gradient import numerical_gradient
+
+
+class simpleNet:
+    def __init__(self):
+        self.W = np.random.randn(2,3)
+
+    def predict(self, x):
+        return np.dot(x, self.W)
+
+    def loss(self, x, t):
+        z = self.predict(x)
+        y = softmax(z)
+        loss = cross_entropy_error(y, t)
+
+        return loss
 
 
 def function_2(x):
@@ -73,6 +91,26 @@ def main_1():
         plt.show()
 
 
-if __name__ == "__main__":
+def main_4_4_1():
     init_x = np.array([-3.0, 4.0])
     print(gradient_dexcent(function_2, init_x=init_x, lr=0.01, step_num=1000))
+
+
+
+
+if __name__ == "__main__":
+    net = simpleNet()
+    print(net.W)
+
+    x = np.array([0.6, 0.9])
+    p = net.predict(x)
+    print(p)
+
+    print(np.argmax(p))
+
+    t = np.array([0, 0, 1])
+    print(net.loss(x, t))
+
+    f = lambda w: net.loss(x, t)
+    dW = numerical_gradient(f, net.W)
+    print(dW)
