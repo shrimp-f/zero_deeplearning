@@ -46,10 +46,10 @@ class TwoLayerNet:
         loss_W = lambda W: self.loss(x, t)
 
         grads = {}
-        grad['W1'] = numerical_gradient(loss_W, self.params['W1'])
-        grad['b1'] = numerical_gradient(loss_W, self.params['b1'])
-        grad['W2'] = numerical_gradient(loss_W, self.params['W2'])
-        grad['b2'] = numerical_gradient(loss_W, self.params['b2'])
+        grads['W1'] = numerical_gradient(loss_W, self.params['W1'])
+        grads['b1'] = numerical_gradient(loss_W, self.params['b1'])
+        grads['W2'] = numerical_gradient(loss_W, self.params['W2'])
+        grads['b2'] = numerical_gradient(loss_W, self.params['b2'])
 
         return grads
 
@@ -69,4 +69,8 @@ if __name__ == "__main__":
     t = np.random.rand(100, 10)
 
     grads = net.numerical_gradient(x, t)
-    print(grads)
+#    print(grads)
+    print(grads['W1'].shape)
+    print(grads['b1'].shape)
+    print(grads['W2'].shape)
+    print(grads['b2'].shape)
