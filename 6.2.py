@@ -22,7 +22,7 @@ for i in range(hidden_layer_seize):
     if i != 0:
         x = activations[i-1]
 
-    w = np.random.randn(node_num, node_num) * 0.01
+    w = np.random.randn(node_num, node_num) / np.sqrt(node_num)
 
     z = np.dot(x, w)
     a = sigmoid(z)
